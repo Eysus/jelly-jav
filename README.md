@@ -55,7 +55,6 @@ The manifest.json will update, and the package will be zipped up in `release/`
 
 ## Authors
 
-- [@octokatherine](https://www.github.com/octokatherine)
 - [@Eysus](https://github.com/eysus)
 - [@imaginary-upside](https://github.com/imaginary-upside/JellyfinJav)
 
