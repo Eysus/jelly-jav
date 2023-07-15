@@ -1,49 +1,71 @@
+
 # JellyfinJav
-Don't expect perfection.
 
-# Metadata Providers
-* R18 (Videos)
-* JAVLibrary (Videos)
-* AsianScreens (Actresses)
-* Warashi Asian Pornstars (Actresses)
+~~Don't expect perfection.~~ Aim for the perfection.
 
-# Instructions
-### Installation
-Within your Jellyfin admin panel, go to Plugins -> Repositories, and add
-https://raw.githubusercontent.com/imaginary-upside/JellyfinJav/master/manifest.json.
-Then switch over to the Catalog tab and install the latest version.
+Based on the archived repo of [imaginary-upside](https://github.com/imaginary-upside/JellyfinJav)
 
-### Usage
+
+## Usage
+
 When adding the media library, make sure to select "Content type: movies".
 
-### Example File Names
-* abp200.mkv
-* ABP200.mkv
-* ABP-200.mkv
-* some random text abp-200 more random text.mkv
+### File names example 
+- abp200.mkv
+- ABP200.mkv
+- ABP-200.mkv
+- some random text abp-200 more random text.mkv
 
-# Development
+## Metadata Providers
+
+- ~~R18 (Videos)~~
+- JAVLibrary (Videos)
+- AsianScreens (Actresses)
+- Warashi Asian Pornstars (Actresses)
+
+
+## Installation
+
+Within your Jellyfin admin panel, go to `Plugins > Repositories`, and add the following repo :
+```
+https://raw.githubusercontent.com/imaginary-upside/JellyfinJav/master/manifest.json.
+```
+Then switch over to the Catalog tab and install the latest version.
+
+## Development
 ### Requirements
-* Docker
-* Docker Compose
-* Python
-* .NET 5.0
+- Docker
+- Docker Compose
+- Python
+- .NET 6.0
+- JAV files for testing purposes are stored in videos/
+
 
 ### Building
-    $ ./build.sh
-    # Visit localhost:8096
+```bash
+./build.sh
+```
+Visite http://localhost:8096
 
 ### Packaging
-    $ python package.py
-    # manifest.json will update, and the package will be zipped up in release/
+```bash
+python pacakge.py
+```
+The manifest.json will update, and the package will be zipped up in `release/`
 
-### General
-JAV files for testing purposes are stored in videos/
+## Authors
 
-# Screenshots
+- [@octokatherine](https://www.github.com/octokatherine)
+- [@Eysus](https://github.com/eysus)
+- [@imaginary-upside](https://github.com/imaginary-upside/JellyfinJav)
+
+## Screenshots
+
 ![Grid Example](screenshots/example-grid.jpg)
 ![Video Example](screenshots/example-video.jpg)
 ![Actress Example](screenshots/example-actress.jpg)
 
-# License
-Licensed under AGPL-3.0-only
+## License
+
+[GNU AGPL-3](https://choosealicense.com/licenses/agpl-3.0/)
+
