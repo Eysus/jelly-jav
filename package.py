@@ -1,15 +1,17 @@
 #!/usr/bin/env python
 import xml.etree.ElementTree as ET
-from datetime import datetime
-from pathlib import Path
-from hashlib import md5
 import json
 import re
 import subprocess
 import shutil
+from datetime import datetime
+from pathlib import Path
+from hashlib import md5
 
 project_name = "JellyJav"
 dotnet_version = "net6.0"
+maintainer = "Eysus"
+
 tree = ET.parse(f"{project_name}/{project_name}.csproj")
 version = tree.find("./PropertyGroup/AssemblyVersion").text
 targetAbi = tree.find("./ItemGroup/*[@Include='Jellyfin.Model']").attrib["Version"]
@@ -19,9 +21,9 @@ timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
 meta = {
     "category": "Metadata",
     "guid": "5a771ee2-cec0-4313-b02b-733453b1ba5b",
-    "name": f"{project_name}",
+    "name": project_name,
     "description": "JAV metadata providers for Jellyfin.",
-    "owner": "imaginary-upside",
+    "owner": maintainer,
     "overview": "JAV metadata providers for Jellyfin.",
     "targetAbi": f"{targetAbi}.0",
     "timestamp": timestamp,
@@ -55,8 +57,9 @@ entry = {
 
 manifest = json.loads(open("manifest.json", "r").read())
 
-if manifest[0]["versions"][0]["version"] == version:
-    del manifest[0]["versions"][0]
+if len(manifest[0]["versions"]) > 0:
+    if manifest[0]["versions"][0]["version"] == version:
+        del manifest[0]["versions"][0]
 
 manifest[0]["versions"].insert(0, entry)
 print(json.dumps(manifest, indent=4), file=open("manifest.json", "w"))
