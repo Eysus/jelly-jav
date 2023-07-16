@@ -6,6 +6,15 @@
         "description": "JAV metadata providers for Jellyfin.",
         "owner": "Eysus",
         "overview": "JAV metadata providers for Jellyfin.",
-        "versions": []
+        "versions": [
+            {
+                "checksum": "b996efe4d17fea83ee69aabda3afc28b",
+                "changelog": "",
+                "targetAbi": "10.8.4.0",
+                "sourceUrl": "https://github.com/Eysus/jelly-jav/releases/download/1.0.0/jellyjav_1.0.0.zip",
+                "timestamp": "2023-07-17T00:23:29Z",
+                "version": "1.0.0"
+            }
+        ]
     }
 ]
