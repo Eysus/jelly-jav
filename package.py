@@ -8,6 +8,7 @@ import re
 import subprocess
 import shutil
 
+dotnet_version = "net6.0"
 tree = ET.parse("JellyfinJav/JellyfinJav.csproj")
 version = tree.find("./PropertyGroup/AssemblyVersion").text
 targetAbi = tree.find("./ItemGroup/*[@Include='Jellyfin.Model']").attrib["Version"]
@@ -37,7 +38,7 @@ subprocess.run([
     "Release"
 ])
 
-shutil.copy("JellyfinJav/bin/Release/net50/JellyfinJav.dll", f"release/{version}/")
+shutil.copy(f"JellyfinJav/bin/Release/{dotnet_version}/JellyfinJav.dll", f"release/{version}/")
 shutil.copy(f"{Path.home()}/.nuget/packages/anglesharp/0.14.0/lib/netstandard2.0/AngleSharp.dll", f"release/{version}/")
 
 shutil.make_archive(f"release/jellyfinjav_{version}", "zip", f"release/{version}/")
