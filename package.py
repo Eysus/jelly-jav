@@ -8,8 +8,9 @@ import re
 import subprocess
 import shutil
 
+project_name = "JellyJav"
 dotnet_version = "net6.0"
-tree = ET.parse("JellyfinJav/JellyfinJav.csproj")
+tree = ET.parse(f"{project_name}/{project_name}.csproj")
 version = tree.find("./PropertyGroup/AssemblyVersion").text
 targetAbi = tree.find("./ItemGroup/*[@Include='Jellyfin.Model']").attrib["Version"]
 targetAbi = re.sub("-\w+", "", targetAbi) # Remove trailing release candidate version.
@@ -17,8 +18,8 @@ timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
 
 meta = {
     "category": "Metadata",
-    "guid": "1d5fffc2-1028-4553-9660-bd4966899e44",
-    "name": "JellyfinJav",
+    "guid": "5a771ee2-cec0-4313-b02b-733453b1ba5b",
+    "name": f"{project_name}",
     "description": "JAV metadata providers for Jellyfin.",
     "owner": "imaginary-upside",
     "overview": "JAV metadata providers for Jellyfin.",
@@ -33,21 +34,21 @@ print(json.dumps(meta, indent=4), file=open(f"release/{version}/meta.json", "w")
 subprocess.run([
     "dotnet",
     "build",
-    "JellyfinJav/JellyfinJav.csproj",
+    f"{project_name}/{project_name}.csproj",
     "--configuration",
     "Release"
 ])
 
-shutil.copy(f"JellyfinJav/bin/Release/{dotnet_version}/JellyfinJav.dll", f"release/{version}/")
+shutil.copy(f"{project_name}/bin/Release/{dotnet_version}/{project_name}.dll", f"release/{version}/")
 shutil.copy(f"{Path.home()}/.nuget/packages/anglesharp/0.14.0/lib/netstandard2.0/AngleSharp.dll", f"release/{version}/")
 
-shutil.make_archive(f"release/jellyfinjav_{version}", "zip", f"release/{version}/")
+shutil.make_archive(f"release/jellyjav_{version}", "zip", f"release/{version}/")
 
 entry = {
-    "checksum": md5(open(f"release/jellyfinjav_{version}.zip", "rb").read()).hexdigest(),
+    "checksum": md5(open(f"release/jellyjav_{version}.zip", "rb").read()).hexdigest(),
     "changelog": "",
     "targetAbi": f"{targetAbi}.0",
-    "sourceUrl": f"https://github.com/imaginary-upside/JellyfinJav/releases/download/{version}/jellyfinjav_{version}.zip",
+    "sourceUrl": f"https://github.com/Eysus/jelly-jav/releases/download/{version}/jellyjav_{version}.zip",
     "timestamp": timestamp,
     "version": version
 }
