@@ -49,7 +49,7 @@ Visite http://localhost:8096
 
 ### Packaging
 ```bash
-python pacakge.py
+python package.py
 ```
 The manifest.json will update, and the package will be zipped up in `release/`
 
