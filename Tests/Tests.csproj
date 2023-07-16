@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JellyfinJav\JellyfinJav.csproj" />
+    <ProjectReference Include="..\JellyJav\JellyJav.csproj" />
   </ItemGroup>
 
 </Project>

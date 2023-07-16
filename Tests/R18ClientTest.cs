@@ -5,7 +5,7 @@ namespace Tests
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using JellyfinJav.Api;
+    using JellyJav.Api;
     using NUnit.Framework;
 
     public class R18ClientTest

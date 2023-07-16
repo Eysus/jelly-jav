@@ -1,9 +1,9 @@
 
-# JellyfinJav
+# Jelly JAV
 
 ~~Don't expect perfection.~~ Aim for the perfection.
 
-Based on the archived repo of [imaginary-upside](https://github.com/imaginary-upside/JellyfinJav)
+Based on the archived repo of [JellyfinJav by imaginary-upside](https://github.com/imaginary-upside/JellyfinJav). As the original creator as no activities for 2 years, I prefered to create my own repo instead of just a fork.
 
 
 ## Usage
@@ -26,11 +26,11 @@ When adding the media library, make sure to select "Content type: movies".
 
 ## Installation
 
-Within your Jellyfin admin panel, go to `Plugins > Repositories`, and add the following repo :
+~~Within your Jellyfin admin panel, go to `Plugins > Repositories`, and add the following repo :
 ```
 https://raw.githubusercontent.com/imaginary-upside/JellyfinJav/master/manifest.json.
 ```
-Then switch over to the Catalog tab and install the latest version.
+Then switch over to the Catalog tab and install the latest version.~~
 
 ## Development
 ### Requirements

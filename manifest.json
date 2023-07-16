@@ -1,68 +1,11 @@
 [
     {
         "category": "Metadata",
-        "guid": "1d5fffc2-1028-4553-9660-bd4966899e44",
-        "name": "JellyfinJav",
+        "guid": "5a771ee2-cec0-4313-b02b-733453b1ba5b",
+        "name": "Jelly JAV",
         "description": "JAV metadata providers for Jellyfin.",
-        "owner": "imaginary-upside",
+        "owner": "Eysus",
         "overview": "JAV metadata providers for Jellyfin.",
-        "versions": [
-            {
-                "checksum": "fc76dd4482b670dcce82785df251f55d",
-                "changelog": "",
-                "targetAbi": "10.8.4.0",
-                "sourceUrl": "https://github.com/imaginary-upside/JellyfinJav/releases/download/2021.04.04.0/jellyfinjav_2021.04.04.0.zip",
-                "timestamp": "2023-07-16T12:58:51Z",
-                "version": "2021.04.04.0"
-            },
-            {
-                "checksum": "70379437f467f0da5fec84d6cd9d6ce5",
-                "changelog": "",
-                "targetAbi": "10.7.0.0",
-                "sourceUrl": "https://github.com/imaginary-upside/JellyfinJav/releases/download/2021.03.14.0/jellyfinjav_2021.03.14.0.zip",
-                "timestamp": "2021-03-14T05:05:04Z",
-                "version": "2021.03.14.0"
-            },
-            {
-                "checksum": "fed7e03fd29d86f394312dd63a9dbe74",
-                "changelog": "",
-                "targetAbi": "10.7.0.0",
-                "sourceUrl": "https://github.com/imaginary-upside/JellyfinJav/releases/download/2020.03.14.0/jellyfinjav_2020.03.14.0.zip",
-                "timestamp": "2021-03-14T04:34:01Z",
-                "version": "2020.03.14.0"
-            },
-            {
-                "checksum": "668680e14eced5ff6dda55da8052d21d",
-                "changelog": "",
-                "targetAbi": "10.7.0.0",
-                "sourceUrl": "https://github.com/imaginary-upside/JellyfinJav/releases/download/2020.01.30.1/jellyfinjav_2020.01.30.1.zip",
-                "timestamp": "2021-01-30T11:39:27Z",
-                "version": "2020.01.30.1"
-            },
-            {
-                "checksum": "02e72351bb12e3657ec76a24230a51a5",
-                "changelog": "Support video title customization.",
-                "targetAbi": "10.6.0.0",
-                "sourceUrl": "https://github.com/imaginary-upside/JellyfinJav/releases/download/0.4.2/jellyfinjav_0.4.2.zip",
-                "timestamp": "2020-09-20T21:30:00Z",
-                "version": "0.4.2"
-            },
-            {
-                "checksum": "7c1e129404b076dea4fe060708d22197",
-                "changelog": "",
-                "targetAbi": "10.6.0.0",
-                "sourceUrl": "https://github.com/imaginary-upside/JellyfinJav/releases/download/0.4.1/jellyfinjav_0.4.1.zip",
-                "timestamp": "2020-07-24T17:12:10Z",
-                "version": "0.4.1"
-            },
-            {
-                "checksum": "9d9b35812c085a1f16653d8dea10c947",
-                "changelog": "",
-                "targetAbi": "10.6.0.0",
-                "sourceUrl": "https://github.com/imaginary-upside/JellyfinJav/releases/download/0.4.0/jellyfinjav_0.4.zip",
-                "timestamp": "2020-07-22T02:18:45Z",
-                "version": "0.4"
-            }
-        ]
+        "versions": []
     }
 ]
