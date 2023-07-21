@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace JellyJav.Plugin.Entity
 {
     public class Actress: EntityBase
@@ -19,7 +13,8 @@ namespace JellyJav.Plugin.Entity
             DateTime? birthdate,
             string? birthlace,
             string? cover
-        ) : base(id) {
+        ) : base(id)
+        {
             Name = name;
             Birthdate = birthdate;
             Birthlace = birthlace;
