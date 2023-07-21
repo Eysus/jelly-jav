@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JellyJav.Plugin", "JellyJav.Plugin\JellyJav.Plugin.csproj", "{CC8C6DCA-B37E-4A37-989C-4151B27C357E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JellyJav.Test", "JellyJav.Test\JellyJav.Test.csproj", "{EA463654-D5D5-48F4-9CB6-0BC544DB09B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC8C6DCA-B37E-4A37-989C-4151B27C357E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC8C6DCA-B37E-4A37-989C-4151B27C357E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC8C6DCA-B37E-4A37-989C-4151B27C357E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC8C6DCA-B37E-4A37-989C-4151B27C357E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA463654-D5D5-48F4-9CB6-0BC544DB09B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA463654-D5D5-48F4-9CB6-0BC544DB09B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA463654-D5D5-48F4-9CB6-0BC544DB09B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA463654-D5D5-48F4-9CB6-0BC544DB09B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {712E40FD-1C9D-4D6D-9A85-D9F04630C672}
+	EndGlobalSection
+EndGlobal
