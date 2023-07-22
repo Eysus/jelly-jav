@@ -1,4 +1,4 @@
-namespace JellyJav
+namespace JellyJav.Plugin.Util
 {
     /// <summary>A class for adding methods to the built in String class.</summary>
     public static class Extensions
