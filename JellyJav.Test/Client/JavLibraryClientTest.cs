@@ -7,7 +7,7 @@ namespace JellyJav.Test.Client
     [TestClass]
     public class JavlibraryClientTest
     {
-        private readonly JavlibraryClient client;
+        private readonly JavLibraryClient client;
 
         public JavlibraryClientTest()
         {

@@ -1,18 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
+using AngleSharp;
+using AngleSharp.Dom;
+using JellyJav.Plugin.Entity;
+using JellyJav.Plugin.SearchResult;
+
 namespace JellyJav.Plugin.Client
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-    using System.Web;
-    using AngleSharp;
-    using AngleSharp.Dom;
-    using JellyJav.Plugin.Entity;
-    using JellyJav.Plugin.SearchResult;
-
     /// <summary>A web scraping client for javlibrary.com.</summary>
-    public class JavlibraryClient : ClientBase
+    public class JavLibraryClient : ClientBase
     {
         private const string BASE_URL = "https://www.javlibrary.com";
 

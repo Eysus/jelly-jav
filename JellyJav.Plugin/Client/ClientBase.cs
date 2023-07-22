@@ -22,5 +22,10 @@ namespace JellyJav.Plugin.Client
         {
             return string.Join(" ", name.Split(' ').Reverse());
         }
+
+        public HttpClient GetClient()
+        {
+            return httpClient;
+        }
     }
 }
