@@ -1,8 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 using JellyJav.Plugin.Client;
 using JellyJav.Plugin.Entity;
 using MediaBrowser.Controller.Entities;

@@ -6,8 +6,7 @@ services:
     volumes:
       - config:/config:z
       - ./videos:/media/videos:ro
-      - ./JellyJav/bin/Debug/net50/JellyJav.dll:/config/plugins/JellyJav/JellyJav.dll:ro
-      - ~/.nuget/packages/anglesharp/0.14.0/lib/netstandard2.0/AngleSharp.dll:/config/plugins/JellyJav/Anglesharp.dll:ro
+      - ./release/2.0.0.0:/config/plugins/JellyJav
     ports:
       - 127.0.0.1:8896:8096
 

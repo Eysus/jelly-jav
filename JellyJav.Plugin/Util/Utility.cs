@@ -67,12 +67,12 @@ namespace JellyJav.Plugin.Util
         /// <returns>The video's created display name.</returns>
         public static string CreateVideoDisplayName(Entity.Video video)
         {
-            return JellyJav.Plugin.Plugin.Instance?.Configuration.VideoDisplayName switch
+            return Plugin.Instance?.Configuration.VideoDisplayName switch
             {
-                VideoDisplayName.BOTH => video.Code + " " + video.Title,
+                VideoDisplayName.BOTH => video.Code + " - " + video.Title,
                 VideoDisplayName.TITLE => video.Title,
                 VideoDisplayName.CODE => video.Title,
-                _ => throw new System.Exception("Impossible to reach.")
+                _ => throw new Exception("Impossible to reach.")
             };
         }
 

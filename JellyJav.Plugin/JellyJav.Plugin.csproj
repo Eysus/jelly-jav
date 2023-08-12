@@ -9,10 +9,14 @@
 
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="1.0.4" />
+    <PackageReference Include="Jellyfin.Controller" Version="10.8.4" />
+    <PackageReference Include="Jellyfin.Model" Version="10.8.4" />
+    <PackageReference Include="SkiaSharp" Version="2.88.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Client\Scrapper\" />
+    <None Remove="Configuration\configPage.html" />
+    <EmbeddedResource Include="Configuration\configPage.html" />
   </ItemGroup>
 
 </Project>

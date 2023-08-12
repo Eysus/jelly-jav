@@ -1,6 +1,6 @@
 namespace JellyJav.Plugin.Entity
 {
-    public class Video: EntityBase
+    public class Video : EntityBase
     {
         public string Code { get; set; }
         public string Title { get; set; }
@@ -11,7 +11,7 @@ namespace JellyJav.Plugin.Entity
         public IEnumerable<string> Genres { get; set; }
         public DateTime? ReleaseDate { get; set; }
 
-        public Video(string id, string code, string title, IEnumerable<string> actresses, IEnumerable<string> genres, string? studio, string? boxArt, string? cover, DateTime? releaseDate): base(id)
+        public Video(string id, string code, string title, IEnumerable<string> actresses, IEnumerable<string> genres, string? studio, string? boxArt, string? cover, DateTime? releaseDate) : base(id)
         {
             Code = code ?? throw new ArgumentNullException(nameof(code));
             Title = title ?? throw new ArgumentNullException(nameof(title));

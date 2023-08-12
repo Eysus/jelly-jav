@@ -4,7 +4,8 @@ namespace JellyJav.Plugin.Entity
     {
         public string Id { get; set; }
 
-        public EntityBase(string id) {
+        public EntityBase(string id)
+        {
             Id = id;
         }
     }

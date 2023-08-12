@@ -1,6 +1,6 @@
 namespace JellyJav.Plugin.Entity
 {
-    public class Actress: EntityBase
+    public class Actress : EntityBase
     {
         public string Name { get; set; }
         public DateTime? Birthdate { get; set; }

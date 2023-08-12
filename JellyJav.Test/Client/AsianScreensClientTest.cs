@@ -1,7 +1,7 @@
-using JellyJav.Plugin.Client;
-using JellyJav.Plugin.SearchResult;
 using FluentAssertions;
+using JellyJav.Plugin.Client;
 using JellyJav.Plugin.Entity;
+using JellyJav.Plugin.SearchResult;
 
 namespace JellyJav.Test.Client
 {

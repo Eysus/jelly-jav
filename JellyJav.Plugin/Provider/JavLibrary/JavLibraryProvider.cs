@@ -1,21 +1,16 @@
+using JellyJav.Plugin.Client;
+using JellyJav.Plugin.Enumeration;
+using JellyJav.Plugin.Util;
+using MediaBrowser.Controller.Entities;
+using MediaBrowser.Controller.Entities.Movies;
+using MediaBrowser.Controller.Library;
+using MediaBrowser.Controller.Providers;
+using MediaBrowser.Model.Entities;
+using MediaBrowser.Model.Providers;
+using Microsoft.Extensions.Logging;
+
 namespace JellyJav.Providers.JavlibraryProvider
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net.Http;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using JellyJav.Plugin.Client;
-    using JellyJav.Plugin.Enumeration;
-    using JellyJav.Plugin.Util;
-    using MediaBrowser.Controller.Entities;
-    using MediaBrowser.Controller.Entities.Movies;
-    using MediaBrowser.Controller.Library;
-    using MediaBrowser.Controller.Providers;
-    using MediaBrowser.Model.Entities;
-    using MediaBrowser.Model.Providers;
-    using Microsoft.Extensions.Logging;
-
     /// <summary>The provider for Javlibrary videos.</summary>
     public class JavLibraryProvider : IRemoteMetadataProvider<Movie, MovieInfo>, IHasOrder
     {

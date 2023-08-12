@@ -1,16 +1,12 @@
+using System.Globalization;
+using System.Text.RegularExpressions;
+using AngleSharp;
+using AngleSharp.Dom;
+using JellyJav.Plugin.Entity;
+using JellyJav.Plugin.SearchResult;
+
 namespace JellyJav.Plugin.Client
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Net.Http;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-    using AngleSharp;
-    using AngleSharp.Dom;
-    using JellyJav.Plugin.Entity;
-    using JellyJav.Plugin.SearchResult;
-
     /// <summary>A web scraping client for warashi-asian-pornstars.fr.</summary>
     public class WarashiClient : ClientBase
     {

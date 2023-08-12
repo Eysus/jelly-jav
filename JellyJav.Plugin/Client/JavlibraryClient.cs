@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web;
 using AngleSharp;
 using AngleSharp.Dom;
 using JellyJav.Plugin.Entity;
 using JellyJav.Plugin.SearchResult;
+using JellyJav.Plugin.Util;
 
 namespace JellyJav.Plugin.Client
 {
@@ -16,18 +12,11 @@ namespace JellyJav.Plugin.Client
     {
         private const string BASE_URL = "https://www.javlibrary.com";
 
-        /// <summary>Searches by the specified identifier.</summary>
+        /// <summary>
+        ///     Searches by the specified identifier.
+        /// </summary>
         /// <param name="identifier">The identifier to search for.</param>
         /// <returns>An array of tuples representing each video returned during the search.</returns>
-        /// <example>
-        /// <code>
-        /// var client = new Javlibrary.Client();
-        /// var results = client.Search("abp");
-        /// results.Count // 20
-        /// results[10].code // ABP-011
-        /// results[10].url // https://http://www.javlibrary.com/en/?v=javlijdqrm
-        /// </code>
-        /// </example>
         public async Task<IEnumerable<VideoResult>> SearchVideos(string identifier)
         {
             IDocument doc = await LoadPage($"{BASE_URL}/en/vl_searchbyid.php?keyword={identifier}").ConfigureAwait(false);
@@ -65,14 +54,6 @@ namespace JellyJav.Plugin.Client
         /// <summary>Loads a specific JAV by url.</summary>
         /// <param name="url">The JAV url.</param>
         /// <returns>The parsed video, or null if no video at <c>url</c> exists.</returns>
-        /// <example>
-        /// <code>
-        /// var client = new Javlibrary.Client();
-        /// var result = client.LoadVideo(new Url("http://www.javlibrary.com/en/?v=javlijazsu"));
-        /// result.Id // javlijazsu
-        /// result.Title // Fan Fan PRESTIGE Large Thanksgiving Soil And Shiro To Spree Yamakawa Blue Sky Meets Escalate! Basutsua ~
-        /// </code>
-        /// </example>
         public async Task<Video?> LoadVideo(Uri url)
         {
             HttpResponseMessage response = await httpClient.GetAsync(url).ConfigureAwait(false);
@@ -84,14 +65,6 @@ namespace JellyJav.Plugin.Client
         /// <summary>Searches for a specific JAV code, and returns the first result.</summary>
         /// <param name="code">The JAV to search for.</param>
         /// <returns>The first result of the search, or null if nothing was found.</returns>
-        /// <example>
-        /// <code>
-        /// var client = new Javlibrary.Client();
-        /// var result = client.SearchFirst("ABP-020");
-        /// result.Id // javlijazsu
-        /// result.Title // Fan Fan PRESTIGE Large Thanksgiving Soil And Shiro To Spree Yamakawa Blue Sky Meets Escalate! Basutsua ~
-        /// </code>
-        /// </example>
         public async Task<Video?> SearchVideo(string code)
         {
             IDocument doc = await LoadPage($"{BASE_URL}/en/vl_searchbyid.php?keyword={code}").ConfigureAwait(false);
@@ -111,14 +84,6 @@ namespace JellyJav.Plugin.Client
         /// <summary>Loads a specific JAV by id.</summary>
         /// <param name="id">The JavLibrary spcific JAV identifier.</param>
         /// <returns>The parsed video, or null if no video with <c>id</c> exists.</returns>
-        /// <example>
-        /// <code>
-        /// var client = new Javlibrary.Client();
-        /// var result = client.LoadVideo("javlijazsu");
-        /// result.Id // javlijazsu
-        /// result.Title // Fan Fan PRESTIGE Large Thanksgiving Soil And Shiro To Spree Yamakawa Blue Sky Meets Escalate! Basutsua ~
-        /// </code>
-        /// </example>
         public async Task<Video?> LoadVideo(string id)
         {
             return await LoadVideo(new Uri($"{BASE_URL}/en/?v=" + id)).ConfigureAwait(false);

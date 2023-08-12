@@ -2,35 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Template</title>
+    <title>Jelly JAV</title>
 </head>
 <body>
-    <div id="TemplateConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button,emby-select,emby-checkbox">
+    <div id="JellyJavConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button,emby-select,emby-checkbox">
         <div data-role="content">
             <div class="content-primary">
-                <form id="TemplateConfigForm">
+                <form id="JellyJavConfigForm">
+                    <!-- VIDEO DISPLAY NAME -->
                     <div class="selectContainer">
-                        <label class="selectLabel" for="Options">Several Options</label>
-                        <select is="emby-select" id="Options" name="Options" class="emby-select-withcolor emby-select">
-                            <option id="optOneOption" value="OneOption">One Option</option>
-                            <option id="optAnotherOption" value="AnotherOption">Another Option</option>
+                        <label class="selectLabel" for="VideoDisplayName">Video display name</label>
+                        <select is="emby-select" id="VideoDisplayName" name="VideoDisplayName" class="emby-select-withcolor emby-select">
+                            <option id="code" value="CODE">JAV Code</option>
+                            <option id="title" value="TITLE">Title</option>
+                            <option id="both" value="BOTH">JAV Code - Title</option>
                         </select>
                     </div>
-                    <div class="inputContainer">
-                        <label class="inputLabel inputLabelUnfocused" for="AnInteger">An Integer</label>
-                        <input id="AnInteger" name="AnInteger" type="number" is="emby-input" min="0" />
-                        <div class="fieldDescription">A Description</div>
-                    </div>
+
+                    <!-- ENABLE ACTRESSES -->
                     <div class="checkboxContainer checkboxContainer-withDescription">
                         <label class="emby-checkbox-label">
-                            <input id="TrueFalseSetting" name="TrueFalseCheckBox" type="checkbox" is="emby-checkbox" />
-                            <span>A Checkbox</span>
+                            <input id="EnableActresses" name="EnableActresses" type="checkbox" is="emby-checkbox" />
+                            <span>Enable actresses</span>
                         </label>
                     </div>
-                    <div class="inputContainer">
-                        <label class="inputLabel inputLabelUnfocused" for="AString">A String</label>
-                        <input id="AString" name="AString" type="text" is="emby-input" />
-                        <div class="fieldDescription">Another Description</div>
+
+                    <!-- ACTRESS NAME ORDER -->
+                    <div class="selectContainer">
+                        <label class="selectLabel" for="ActressNameOrder">Actresses name order</label>
+                        <select is="emby-select" id="ActressNameOrder" name="ActressNameOrder" class="emby-select-withcolor emby-select">
+                            <option id="firstLast" value="FIRST_LAST">First Last (Jane Doe)</option>
+                            <option id="lastFirst" value="LAST_FIRST">Last First (Doe Jane)</option>
+                        </select>
                     </div>
                     <div>
                         <button is="emby-button" type="submit" class="raised button-submit block emby-button">
@@ -41,39 +44,36 @@
             </div>
         </div>
         <script type="text/javascript">
-            var TemplateConfig = {
-                pluginUniqueId: 'eb5d7894-8eef-4b36-aa6f-5d124e828ce1'
+            var JellyJavConfig = {
+                pluginUniqueId: '5a771ee2-cec0-4313-b02b-733453b1ba5b'
             };
 
-            document.querySelector('#TemplateConfigPage')
-                .addEventListener('pageshow', function() {
+            document.querySelector('#JellyJavConfigPage')
+                .addEventListener('pageshow', function () {
                     Dashboard.showLoadingMsg();
-                    ApiClient.getPluginConfiguration(TemplateConfig.pluginUniqueId).then(function (config) {
-                        document.querySelector('#Options').value = config.Options;
-                        document.querySelector('#AnInteger').value = config.AnInteger;
-                        document.querySelector('#TrueFalseSetting').checked = config.TrueFalseSetting;
-                        document.querySelector('#AString').value = config.AString;
+                    ApiClient.getPluginConfiguration(JellyJavConfig.pluginUniqueId).then(function (config) {
+                        document.querySelector('#VideoDisplayName').value = config.VideoDisplayName;
+                        document.querySelector('#EnableActresses').checked = config.EnableActresses;
+                        document.querySelector('#ActressNameOrder').value = config.ActressNameOrder;
                         Dashboard.hideLoadingMsg();
                     });
                 });
 
-            document.querySelector('#TemplateConfigForm')
-                .addEventListener('submit', function(e) {
-                Dashboard.showLoadingMsg();
-                ApiClient.getPluginConfiguration(TemplateConfig.pluginUniqueId).then(function (config) {
-                    config.Options = document.querySelector('#Options').value;
-                    config.AnInteger = document.querySelector('#AnInteger').value;
-                    config.TrueFalseSetting = document.querySelector('#TrueFalseSetting').checked;
-                    config.AString = document.querySelector('#AString').value;
-                    ApiClient.updatePluginConfiguration(TemplateConfig.pluginUniqueId, config).then(function (result) {
-                        Dashboard.processPluginConfigurationUpdateResult(result);
+            document.querySelector('#JellyJavConfigForm')
+                .addEventListener('submit', function (e) {
+                    Dashboard.showLoadingMsg();
+                    ApiClient.getPluginConfiguration(JellyJavConfig.pluginUniqueId).then(function (config) {
+                        config.VideoDisplayName = document.querySelector('#VideoDisplayName').value;
+                        config.EnableActresses = document.querySelector('#EnableActresses').checked;
+                        config.ActressNameOrder = document.querySelector('#ActressNameOrder').value;
+                        ApiClient.updatePluginConfiguration(JellyJavConfig.pluginUniqueId, config).then(function (result) {
+                            Dashboard.processPluginConfigurationUpdateResult(result);
+                        });
                     });
-                });
 
-                e.preventDefault();
-                return false;
-            });
-        </script>
+                    e.preventDefault();
+                    return false;
+                });</script>
     </div>
 </body>
 </html>
