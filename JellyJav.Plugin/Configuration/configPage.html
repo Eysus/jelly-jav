@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Jelly JAV</title>
+</head>
+<body>
+    <div id="JellyJavConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button,emby-select,emby-checkbox">
+        <div data-role="content">
+            <div class="content-primary">
+                <form id="JellyJavConfigForm">
+                    <!-- VIDEO DISPLAY NAME -->
+                    <div class="selectContainer">
+                        <label class="selectLabel" for="VideoDisplayName">Video display name</label>
+                        <select is="emby-select" id="VideoDisplayName" name="VideoDisplayName" class="emby-select-withcolor emby-select">
+                            <option id="code" value="CODE">JAV Code</option>
+                            <option id="title" value="TITLE">Title</option>
+                            <option id="both" value="BOTH">JAV Code - Title</option>
+                        </select>
+                    </div>
+
+                    <!-- ENABLE ACTRESSES -->
+                    <div class="checkboxContainer checkboxContainer-withDescription">
+                        <label class="emby-checkbox-label">
+                            <input id="EnableActresses" name="EnableActresses" type="checkbox" is="emby-checkbox" />
+                            <span>Enable actresses</span>
+                        </label>
+                    </div>
+
+                    <!-- ACTRESS NAME ORDER -->
+                    <div class="selectContainer">
+                        <label class="selectLabel" for="ActressNameOrder">Actresses name order</label>
+                        <select is="emby-select" id="ActressNameOrder" name="ActressNameOrder" class="emby-select-withcolor emby-select">
+                            <option id="firstLast" value="FIRST_LAST">First Last (Jane Doe)</option>
+                            <option id="lastFirst" value="LAST_FIRST">Last First (Doe Jane)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button is="emby-button" type="submit" class="raised button-submit block emby-button">
+                            <span>Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var JellyJavConfig = {
+                pluginUniqueId: '5a771ee2-cec0-4313-b02b-733453b1ba5b'
+            };
+
+            document.querySelector('#JellyJavConfigPage')
+                .addEventListener('pageshow', function () {
+                    Dashboard.showLoadingMsg();
+                    ApiClient.getPluginConfiguration(JellyJavConfig.pluginUniqueId).then(function (config) {
+                        document.querySelector('#VideoDisplayName').value = config.VideoDisplayName;
+                        document.querySelector('#EnableActresses').checked = config.EnableActresses;
+                        document.querySelector('#ActressNameOrder').value = config.ActressNameOrder;
+                        Dashboard.hideLoadingMsg();
+                    });
+                });
+
+            document.querySelector('#JellyJavConfigForm')
+                .addEventListener('submit', function (e) {
+                    Dashboard.showLoadingMsg();
+                    ApiClient.getPluginConfiguration(JellyJavConfig.pluginUniqueId).then(function (config) {
+                        config.VideoDisplayName = document.querySelector('#VideoDisplayName').value;
+                        config.EnableActresses = document.querySelector('#EnableActresses').checked;
+                        config.ActressNameOrder = document.querySelector('#ActressNameOrder').value;
+                        ApiClient.updatePluginConfiguration(JellyJavConfig.pluginUniqueId, config).then(function (result) {
+                            Dashboard.processPluginConfigurationUpdateResult(result);
+                        });
+                    });
+
+                    e.preventDefault();
+                    return false;
+                });</script>
+    </div>
+</body>
+</html>

@@ -8,12 +8,12 @@ from datetime import datetime
 from pathlib import Path
 from hashlib import md5
 
-project_name = "JellyJav"
+project_name = "JellyJav.Plugin"
 dotnet_version = "net6.0"
 maintainer = "Eysus"
 
 tree = ET.parse(f"{project_name}/{project_name}.csproj")
-version = tree.find("./PropertyGroup/AssemblyVersion").text
+version = tree.find("./PropertyGroup/Version").text
 targetAbi = tree.find("./ItemGroup/*[@Include='Jellyfin.Model']").attrib["Version"]
 targetAbi = re.sub("-\w+", "", targetAbi) # Remove trailing release candidate version.
 timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
