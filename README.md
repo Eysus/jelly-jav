@@ -54,11 +54,7 @@ The manifest.json will update, and the package will be zipped up in `release/`
 
 - [@Eysus](https://github.com/eysus)
 - original version from [@imaginary-upside](https://github.com/imaginary-upside/JellyfinJav)
-## Screenshots
 
-![Grid Example](screenshots/example-grid.jpg)
-![Video Example](screenshots/example-video.jpg)
-![Actress Example](screenshots/example-actress.jpg)
 ## License
 
 [GNU AGPL-3](https://choosealicense.com/licenses/agpl-3.0/)
