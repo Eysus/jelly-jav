@@ -117,7 +117,13 @@ namespace JellyJav.Plugin.Client
 
             IEnumerable<string> genres = doc.QuerySelectorAll(".genre a").Select(n => n.TextContent);
             string? studio = doc.QuerySelector("#video_maker a")?.TextContent;
-            string? boxArt = doc.QuerySelector("#video_jacket_img")?.GetAttribute("src")?.Insert(0, "https:");
+            string? boxArt = doc.QuerySelector("#video_jacket_img")?.GetAttribute("src");
+
+            if (boxArt != null && !boxArt.StartsWith("https:"))
+            {
+                boxArt = "https:" + boxArt;
+            }
+
             string? cover = boxArt?.Replace("pl.jpg", "ps.jpg");
 
             return new Video(
