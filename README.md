@@ -26,7 +26,7 @@ When adding the media library, make sure to select "Content type: movies".
 
 Within your Jellyfin admin panel, go to `Plugins > Repositories`, and add the following repo :
 ```
-https://raw.githubusercontent.com/imaginary-upside/JellyfinJav/master/manifest.json.
+https://raw.githubusercontent.com/eysus/jelly-jav/master/manifest.json
 ```
 Then switch over to the Catalog tab and install the latest version.
 
