@@ -42,13 +42,16 @@ namespace JellyJav.Plugin.Util
         /// <returns>The video's jav code.</returns>
         public static string? ExtractCodeFromFilename(string filename)
         {
-            const string regexPattern = @"([a-zA-Z]+)(-)?(\d+)";
-            const string validPattern = @"([a-zA-Z]+)(-)?(\d{3})";
+            const string universalRegex = @"([a-zA-Z]+(\d+)?)(-)?(\d{3})";
             filename = Path.GetFileNameWithoutExtension(filename);
-            Regex rx = new Regex(regexPattern);
+            Regex rx = new Regex(universalRegex);
+
+            if (!rx.IsMatch(filename)) return null;
+
+            const string validPattern = @"([A-Z]+(\d+)?)-(\d{3})";
             GroupCollection parts = rx.Match(filename).Groups;
-            string serie = parts[1].Value.ToUpper();
-            string number = parts[3].Value;
+            string serie = parts[1].Value.Replace("00", "").ToUpper();
+            string number = parts[4].Value;
 
             if (number.Length > 3)
             {

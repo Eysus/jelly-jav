@@ -30,5 +30,25 @@ namespace JellyJav.Test.Util
                 Utility.ExtractCodeFromFilename(filename).Should().Be("ABP-200");
             }
         }
+
+        [TestMethod]
+        public void ExtractCodeFromFilename_WithNumberInCode_Ok()
+        {
+            string[] filenames = {
+                "t28510.mkv",
+                "T28510.mkv",
+                "T28-510.mkv",
+                "some random text t28-510 more random text.mkv",
+                "55t2800510.mkv",
+                "55t2800510-0.mkv",
+                "h_55t2800510-0.mkv",
+                "55t2800510.mkv"
+            };
+
+            foreach (string filename in filenames)
+            {
+                Utility.ExtractCodeFromFilename(filename).Should().Be("T28-510");
+            }
+        }
     }
 }
