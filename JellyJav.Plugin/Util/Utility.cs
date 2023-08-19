@@ -42,24 +42,22 @@ namespace JellyJav.Plugin.Util
         /// <returns>The video's jav code.</returns>
         public static string? ExtractCodeFromFilename(string filename)
         {
-            Regex rx = new Regex(@"[\w\d]+-?\d+");
-            string? value = rx.Match(filename)?.Value.ToUpper();
+            const string regexPattern = @"([a-zA-Z]+)(-)?(\d+)";
+            const string validPattern = @"([a-zA-Z]+)(-)?(\d{3})";
+            filename = Path.GetFileNameWithoutExtension(filename);
+            Regex rx = new Regex(regexPattern);
+            GroupCollection parts = rx.Match(filename).Groups;
+            string serie = parts[1].Value.ToUpper();
+            string number = parts[3].Value;
 
-            if (value is null)
+            if (number.Length > 3)
             {
-                return null;
+                number = number.Substring(number.Length - 3);
             }
 
-            if (value.Contains("-"))
-            {
-                return value;
-            }
-            else
-            {
-                rx = new Regex(@"([\w\d]+?)(\d+)");
-                GroupCollection groups = rx.Match(value).Groups;
-                return groups[1] + "-" + groups[2];
-            }
+            string value = string.Format($"{serie}-{number}");
+
+            return Regex.IsMatch(value, validPattern) ? value : null;
         }
 
         /// <summary>Creates a video's display name according to the plugin's selected configuration.</summary>
