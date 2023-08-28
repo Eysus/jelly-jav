@@ -3,19 +3,19 @@ using MediaBrowser.Controller.Providers;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Providers;
 
-namespace JellyJav.Providers.JavlibraryProvider
+namespace JellyJav.Providers.JAVHDPorn
 {
     /// <summary>External ID for a Javlibrary video.</summary>
     public class JAVHDPornExternalId : IExternalId
     {
         /// <inheritdoc />
-        public string ProviderName => "JavLibrary";
+        public string ProviderName => "JAVHDPorn";
 
         /// <inheritdoc />
-        public string Key => "Javlibrary";
+        public string Key => "JAVHDPorn";
 
         /// <inheritdoc />
-        public string UrlFormatString => "https://www.javlibrary.com/en/?v={0}";
+        public string UrlFormatString => "https://www4.javhdporn.net/video/{0}";
 
         /// <inheritdoc />
         public ExternalIdMediaType? Type => ExternalIdMediaType.Movie;

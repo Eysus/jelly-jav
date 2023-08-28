@@ -14,10 +14,13 @@ When adding the media library, make sure to select "Content type: movies".
 - abp200.mkv
 - ABP200.mkv
 - ABP-200.mkv
+- Fc2-ppv-13245
 - some random text abp-200 more random text.mkv
+
 ## Metadata Providers
 
 - JAVLibrary (Videos)
+- JAVHDPorn (FC2 Videos)
 - AsianScreens (Actresses)
 - Warashi Asian Pornstars (Actresses)
 

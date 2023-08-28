@@ -63,6 +63,24 @@ namespace JellyJav.Plugin.Util
             return Regex.IsMatch(value, validPattern) ? value : null;
         }
 
+        /// <summary>Extracts the jav code from a video's filename.</summary>
+        /// <param name="filename">The video's filename.</param>
+        /// <returns>The video's jav code.</returns>
+        public static string? ExtractFC2CodeFromFilename(string filename)
+        {
+            const string universalRegex = @"(FC2)([\s-])?(PPV)([\s-])?(\d+)";
+            filename = Path.GetFileNameWithoutExtension(filename);
+            Regex rx = new Regex(universalRegex);
+
+            if (!rx.IsMatch(filename)) return filename;
+
+            const string validPattern = "FC2-PPV-\\d+";
+            GroupCollection parts = rx.Match(filename).Groups;
+            string code = "FC2-PPV-" + parts[5].Value;
+
+            return Regex.IsMatch(code, validPattern) ? code : null;
+        }
+
         /// <summary>Creates a video's display name according to the plugin's selected configuration.</summary>
         /// <param name="video">The video.</param>
         /// <returns>The video's created display name.</returns>
