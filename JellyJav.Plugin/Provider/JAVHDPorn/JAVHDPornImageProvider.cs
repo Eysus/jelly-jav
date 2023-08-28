@@ -1,20 +1,19 @@
 using JellyJav.Plugin.Client;
-using JellyJav.Plugin.Util;
 using MediaBrowser.Controller.Entities;
 using MediaBrowser.Controller.Entities.Movies;
 using MediaBrowser.Controller.Providers;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Providers;
 
-namespace JellyJav.Providers.JavlibraryProvider
+namespace JellyJav.Providers.JAVHDPorn
 {
     /// <summary>The provider for Javlibrary video covers.</summary>
     public class JAVHDPornImageProvider : IRemoteImageProvider, IHasOrder
     {
-        private static readonly JavLibraryClient client = new();
+        private static readonly JAVHDPornClient client = new();
 
         /// <inheritdoc />
-        public string Name => "JavLibrary";
+        public string Name => "JAVHDPorn";
 
         /// <inheritdoc />
         public int Order => 100;
@@ -22,7 +21,7 @@ namespace JellyJav.Providers.JavlibraryProvider
         /// <inheritdoc />
         public async Task<IEnumerable<RemoteImageInfo>> GetImages(BaseItem item, CancellationToken cancelToken)
         {
-            string? id = item.GetProviderId("Javlibrary");
+            string? id = item.GetProviderId("JAVHDPorn");
             if (string.IsNullOrEmpty(id))
             {
                 return Array.Empty<RemoteImageInfo>();
@@ -36,7 +35,7 @@ namespace JellyJav.Providers.JavlibraryProvider
                 {
                     ProviderName = this.Name,
                     Type = ImageType.Primary,
-                    Url = video?.BoxArt,
+                    Url = video.Cover,
                 },
             };
         }
@@ -45,7 +44,6 @@ namespace JellyJav.Providers.JavlibraryProvider
         public async Task<HttpResponseMessage> GetImageResponse(string url, CancellationToken cancelToken)
         {
             HttpResponseMessage httpResponse = await client.GetClient().GetAsync(url, cancelToken).ConfigureAwait(false);
-            await Utility.CropThumb(httpResponse).ConfigureAwait(false);
             return httpResponse;
         }
 
