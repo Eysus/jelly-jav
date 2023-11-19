@@ -126,6 +126,11 @@ namespace JellyJav.Plugin.Client
 
             string? cover = boxArt?.Replace("pl.jpg", "ps.jpg");
 
+            string releaseDateString = doc.QuerySelector("#video_date .text")
+                           ?.TextContent
+                           .TrimStart(' ')
+                           .Trim() ?? string.Empty;
+
             return new Video(
                 id: id,
                 code: code,
@@ -135,7 +140,7 @@ namespace JellyJav.Plugin.Client
                 studio: studio,
                 boxArt: boxArt,
                 cover: cover,
-                releaseDate: null); // TODO
+                releaseDate: DateTime.Parse(releaseDateString)); // TODO
         }
     }
 }

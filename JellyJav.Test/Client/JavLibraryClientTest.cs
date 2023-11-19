@@ -91,7 +91,7 @@ namespace JellyJav.Test.Client
                 studio: "SOD Create",
                 boxArt: "https://pics.dmm.co.jp/mono/movie/adult/1stars126/1stars126pl.jpg",
                 cover: "https://pics.dmm.co.jp/mono/movie/adult/1stars126/1stars126ps.jpg",
-                releaseDate: null); // TODO
+                releaseDate: DateTime.Parse("2019-09-26"));
 
             Assert.AreEqual(result, correct);
         }
