@@ -115,5 +115,10 @@ namespace JellyJav.Plugin.Util
             newContent.Headers.ContentType = httpResponse.Content.Headers.ContentType;
             httpResponse.Content = newContent;
         }
+
+        public static string ReverseName(in string name)
+        {
+            return string.Join(" ", name.Split(' ').Reverse());
+        }
     }
 }

@@ -3,14 +3,14 @@ using AngleSharp;
 using AngleSharp.Dom;
 using JellyJav.Plugin.Entity;
 using JellyJav.Plugin.SearchResult;
-using JellyJav.Plugin.Util;
+using JellyJav.Plugin.Util.Parser;
 
 namespace JellyJav.Plugin.Client
 {
     /// <summary>A web scraping client for javlibrary.com.</summary>
     public class JavLibraryClient : ClientBase
     {
-        private const string BASE_URL = "https://www.javlibrary.com";
+        public const string BASE_URL = "https://www.javlibrary.com";
 
         /// <summary>
         ///     Searches by the specified identifier.
@@ -59,7 +59,8 @@ namespace JellyJav.Plugin.Client
             HttpResponseMessage response = await httpClient.GetAsync(url).ConfigureAwait(false);
             string html = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             IDocument doc = await context.OpenAsync(req => req.Content(html)).ConfigureAwait(false);
-            return ParseVideoPage(doc);
+            JavLibraryParser parser = new(doc);
+            return parser.GetVideoData();
         }
 
         /// <summary>Searches for a specific JAV code, and returns the first result.</summary>
@@ -68,15 +69,15 @@ namespace JellyJav.Plugin.Client
         public async Task<Video?> SearchVideo(string code)
         {
             IDocument doc = await LoadPage($"{BASE_URL}/en/vl_searchbyid.php?keyword={code}").ConfigureAwait(false);
+            JavLibraryParser parser = new(doc);
 
-            if (doc.QuerySelector("p em")?.TextContent == "Search returned no result." ||
-                doc.QuerySelector("#badalert td")?.TextContent == "The search term you entered is invalid. Please try a different term.")
+            if (!parser.IsOk())
             {
                 return null;
             }
 
             // if only one result was found, and so we were taken directly to the video page.
-            if (doc.QuerySelector("#video_id") != null) return ParseVideoPage(doc);
+            if (parser.Id != null) return parser.GetVideoData();
 
             return await LoadVideo(new Uri($"{BASE_URL}/en/" + doc.QuerySelector(".video a")?.GetAttribute("href"))).ConfigureAwait(false);
         }
@@ -94,53 +95,6 @@ namespace JellyJav.Plugin.Client
             HttpResponseMessage response = await httpClient.GetAsync(url).ConfigureAwait(false);
             string html = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return await context.OpenAsync(req => req.Content(html)).ConfigureAwait(false);
-        }
-
-        private Video? ParseVideoPage(IDocument doc)
-        {
-            string? id = HttpUtility.ParseQueryString(
-                new Uri(BASE_URL + doc.QuerySelector("#video_title a")?.GetAttribute("href")).Query)["v"];
-            string? code = doc.QuerySelector("#video_id .text")?.TextContent;
-            if (id is null || code is null)
-            {
-                return null;
-            }
-
-            IEnumerable<string> actresses = doc.QuerySelectorAll(".star a").Select(n => n.TextContent);
-            string title = doc.QuerySelector("#video_title a")
-                           ?.TextContent
-                           .Replace(code, string.Empty)
-                           .TrimStart(' ')
-                           .Trim(actresses.FirstOrDefault())
-                           .Trim(ReverseName(actresses.FirstOrDefault() ?? string.Empty))
-                           .Trim() ?? string.Empty;
-
-            IEnumerable<string> genres = doc.QuerySelectorAll(".genre a").Select(n => n.TextContent);
-            string? studio = doc.QuerySelector("#video_maker a")?.TextContent;
-            string? boxArt = doc.QuerySelector("#video_jacket_img")?.GetAttribute("src");
-
-            if (boxArt != null && !boxArt.StartsWith("https:"))
-            {
-                boxArt = "https:" + boxArt;
-            }
-
-            string? cover = boxArt?.Replace("pl.jpg", "ps.jpg");
-
-            string releaseDateString = doc.QuerySelector("#video_date .text")
-                           ?.TextContent
-                           .TrimStart(' ')
-                           .Trim() ?? string.Empty;
-
-            return new Video(
-                id: id,
-                code: code,
-                title: title,
-                actresses: actresses,
-                genres: genres,
-                studio: studio,
-                boxArt: boxArt,
-                cover: cover,
-                releaseDate: DateTime.Parse(releaseDateString)); // TODO
         }
     }
 }

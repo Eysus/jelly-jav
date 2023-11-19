@@ -72,7 +72,7 @@ namespace JellyJav.Test.Client
                 studio: "S1 NO.1 STYLE",
                 boxArt: "https://pics.dmm.co.jp/mono/movie/adult/ssni230/ssni230pl.jpg",
                 cover: "https://pics.dmm.co.jp/mono/movie/adult/ssni230/ssni230ps.jpg",
-                releaseDate: null); // TODO
+                releaseDate: DateTime.Parse("2018-06-13")); // TODO
 
             Assert.AreEqual(correct, result);
         }
@@ -110,7 +110,7 @@ namespace JellyJav.Test.Client
                 studio: "Prestige",
                 boxArt: "https://pics.dmm.co.jp/mono/movie/adult/118abp002/118abp002pl.jpg",
                 cover: "https://pics.dmm.co.jp/mono/movie/adult/118abp002/118abp002ps.jpg",
-                releaseDate: null); // TODO
+                releaseDate: DateTime.Parse("2013-06-01")); // TODO
 
             Assert.AreEqual(result, correct);
         }
@@ -129,7 +129,7 @@ namespace JellyJav.Test.Client
                 studio: "SOD Create",
                 boxArt: "https://pics.dmm.co.jp/mono/movie/adult/1sdde592/1sdde592pl.jpg",
                 cover: "https://pics.dmm.co.jp/mono/movie/adult/1sdde592/1sdde592ps.jpg",
-                releaseDate: null); // TODO
+                releaseDate: DateTime.Parse("2019-08-22"));
 
             result.Should().Be(correct);
         }
@@ -148,7 +148,7 @@ namespace JellyJav.Test.Client
                 studio: "IDEA POCKET",
                 boxArt: "https://pics.dmm.co.jp/mono/movie/adult/iptd041/iptd041pl.jpg",
                 cover: "https://pics.dmm.co.jp/mono/movie/adult/iptd041/iptd041ps.jpg",
-                releaseDate: null); // TODO
+                releaseDate: DateTime.Parse("2004-11-08"));
 
             Assert.AreEqual(result, correct);
         }
