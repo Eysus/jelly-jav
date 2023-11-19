@@ -14,6 +14,7 @@ namespace JellyJav.Plugin.Client
         private const string BASE_URL = "https://www.javhdporn.net";
         private const string BASE_SEARCH = "/search/";
         private const string BASE_VIDEO = "/video/";
+        private readonly string[] CLEAN_TITLE = { "(English Subtitle)" };
 
         /// <summary>
         ///     Searches by the specified identifier.
@@ -56,7 +57,6 @@ namespace JellyJav.Plugin.Client
         /// <returns>The first result of the search, or null if nothing was found.</returns>
         public async Task<Video?> SearchVideo(string code)
         {
-            //return await LoadVideo(new Uri($"{BASE_URL}{BASE_VIDEO}" + code.Replace(" ", "-").ToLower()));
             IDocument doc = await LoadPage($"{BASE_URL}{BASE_SEARCH}{code}").ConfigureAwait(false);
 
             if (doc.QuerySelector("#main .widget-title")?.TextContent == "Nothing found")
@@ -95,7 +95,15 @@ namespace JellyJav.Plugin.Client
             string? id = segments?.Last();
             string? code = id.ToUpper();
 
-            string? title = Regex.Replace(doc.QuerySelector(".post h1").TextContent, "FC2[\\s-]?PPV[\\s-]?\\d+", "").Trim();
+            string rawTitle = doc.QuerySelector(".post h1").TextContent;
+            string? title = Regex.Replace(rawTitle, "FC2[\\s-]?PPV[\\s-]?\\d+", "").Trim();
+            title = Regex.Replace(title, "[A-Z]+[\\s-]?\\d+", "").Trim();
+            foreach (string toRemove in CLEAN_TITLE)
+            {
+                title = title.Replace(toRemove, "").Trim();
+            }
+
+            title = title.TrimRegex("[^A-Za-z0-9]");
 
             if (id is null || code is null)
             {

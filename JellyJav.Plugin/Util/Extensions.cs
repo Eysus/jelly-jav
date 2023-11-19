@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace JellyJav.Plugin.Util
 {
     /// <summary>A class for adding methods to the built in String class.</summary>
@@ -43,6 +45,17 @@ namespace JellyJav.Plugin.Util
             }
 
             return source.Remove(source.LastIndexOf(value));
+        }
+
+        public static string TrimRegex(this string source, string? value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return source;
+            }
+            string result = Regex.Replace(source, $"^{value}", "");
+            result = Regex.Replace(result, $"{value}$", "");
+            return result;
         }
     }
 }

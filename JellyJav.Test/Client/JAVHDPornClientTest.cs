@@ -51,5 +51,26 @@ namespace JellyJav.Test.Client
             Assert.AreEqual(correct.Code, result.Code);
             Assert.AreEqual(correct.Title, result.Title);
         }
+
+        [TestMethod]
+        public async Task SearchVideo_ResultNoFC2()
+        {
+            Video? result = await client.SearchVideo("KTKL-007").ConfigureAwait(false);
+
+            Video correct = new Video(
+                id: "ktkl-007",
+                code: "KTKL-007",
+                title: "Meet Our Beloved Daughter. Because We Can’t Make A Living With Her Doing Sexy Costume",
+                actresses: new List<string>(),
+                genres: new List<string>(),
+                studio: null,
+                boxArt: null,
+                cover: null,
+                releaseDate: null); // TODO
+
+            Assert.AreEqual(correct.Id, result.Id);
+            Assert.AreEqual(correct.Code, result.Code);
+            Assert.AreEqual(correct.Title, result.Title);
+        }
     }
 }

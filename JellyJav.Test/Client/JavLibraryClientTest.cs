@@ -34,6 +34,15 @@ namespace JellyJav.Test.Client
         }
 
         [TestMethod]
+        public async Task SearchVideos_SingleResultFourDigits()
+        {
+            IEnumerable<Plugin.SearchResult.VideoResult> results = await client.SearchVideos("GODR-1136").ConfigureAwait(false);
+
+            Assert.AreEqual("GODR-1136", results.ElementAt(0).Code);
+            Assert.AreEqual("javmemaqqa", results.ElementAt(0).Id);
+        }
+
+        [TestMethod]
         public async Task SearchVideo_Empty()
         {
             Video? result = await client.SearchVideo("AAA-111").ConfigureAwait(false);
