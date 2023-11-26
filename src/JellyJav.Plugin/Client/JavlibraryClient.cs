@@ -51,6 +51,14 @@ namespace JellyJav.Plugin.Client
             return videos;
         }
 
+        /// <summary>Loads a specific JAV by id.</summary>
+        /// <param name="id">The JavLibrary spcific JAV identifier.</param>
+        /// <returns>The parsed video, or null if no video with <c>id</c> exists.</returns>
+        public async Task<Video?> LoadVideo(string id)
+        {
+            return await LoadVideo(new Uri($"{BASE_URL}/en/?v=" + id)).ConfigureAwait(false);
+        }
+
         /// <summary>Loads a specific JAV by url.</summary>
         /// <param name="url">The JAV url.</param>
         /// <returns>The parsed video, or null if no video at <c>url</c> exists.</returns>
@@ -79,14 +87,6 @@ namespace JellyJav.Plugin.Client
             if (doc.QuerySelector("#video_id") != null) return ParseVideoPage(doc);
 
             return await LoadVideo(new Uri($"{BASE_URL}/en/" + doc.QuerySelector(".video a")?.GetAttribute("href"))).ConfigureAwait(false);
-        }
-
-        /// <summary>Loads a specific JAV by id.</summary>
-        /// <param name="id">The JavLibrary spcific JAV identifier.</param>
-        /// <returns>The parsed video, or null if no video with <c>id</c> exists.</returns>
-        public async Task<Video?> LoadVideo(string id)
-        {
-            return await LoadVideo(new Uri($"{BASE_URL}/en/?v=" + id)).ConfigureAwait(false);
         }
 
         private async Task<IDocument> LoadPage(string url)
@@ -126,6 +126,11 @@ namespace JellyJav.Plugin.Client
 
             string? cover = boxArt?.Replace("pl.jpg", "ps.jpg");
 
+            string releaseDateString = doc.QuerySelector("#video_date .text")
+                           ?.TextContent
+                           .TrimStart(' ')
+                           .Trim() ?? string.Empty;
+
             return new Video(
                 id: id,
                 code: code,
@@ -135,7 +140,7 @@ namespace JellyJav.Plugin.Client
                 studio: studio,
                 boxArt: boxArt,
                 cover: cover,
-                releaseDate: null); // TODO
+                releaseDate: DateTime.Parse(releaseDateString)); // TODO
         }
     }
 }
