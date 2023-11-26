@@ -1,8 +1,8 @@
 using System.Web;
 using AngleSharp.Dom;
-using JellyJav.Plugin.Client;
+using JellyJav.Plugin.Util;
 
-namespace JellyJav.Plugin.Util.Parser
+namespace JellyJav.Plugin.Client.Parser
 {
     public class JavLibraryParser
     {

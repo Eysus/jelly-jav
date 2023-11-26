@@ -1,9 +1,9 @@
 using System.Web;
 using AngleSharp;
 using AngleSharp.Dom;
+using JellyJav.Plugin.Client.Parser;
 using JellyJav.Plugin.Entity;
 using JellyJav.Plugin.SearchResult;
-using JellyJav.Plugin.Util.Parser;
 
 namespace JellyJav.Plugin.Client
 {
