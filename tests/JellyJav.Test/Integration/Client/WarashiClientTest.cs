@@ -1,12 +1,12 @@
 using JellyJav.Plugin.Client;
 using JellyJav.Plugin.Entity;
 
-namespace JellyJav.Test.Client
+namespace JellyJav.Test.Integration.Client
 {
     [TestClass]
     public class WarashiClientTest
     {
-        private WarashiClient client;
+        private readonly WarashiClient client;
 
         public WarashiClientTest()
         {

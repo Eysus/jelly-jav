@@ -40,6 +40,7 @@ namespace JellyJav.Plugin.Util
         /// <summary>Extracts the jav code from a video's filename.</summary>
         /// <param name="filename">The video's filename.</param>
         /// <returns>The video's jav code.</returns>
+        /// <remarks>This method should evolve in order to make difference between 4 digit code, and prefix 0</remarks>
         public static string? ExtractCodeFromFilename(string filename)
         {
             const string universalRegex = @"([a-zA-Z]+(\d+)?)(-)?(\d{3})";
@@ -70,7 +71,7 @@ namespace JellyJav.Plugin.Util
         {
             const string universalRegex = @"(FC2)([\s-])?(PPV)([\s-])?(\d+)";
             filename = Path.GetFileNameWithoutExtension(filename);
-            Regex rx = new Regex(universalRegex);
+            Regex rx = new Regex($"{universalRegex}", RegexOptions.IgnoreCase);
 
             if (!rx.IsMatch(filename)) return filename;
 

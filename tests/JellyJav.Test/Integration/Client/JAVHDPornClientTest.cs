@@ -2,7 +2,7 @@ using FluentAssertions;
 using JellyJav.Plugin.Client;
 using JellyJav.Plugin.Entity;
 
-namespace JellyJav.Test.Client
+namespace JellyJav.Test.Integration.Client
 {
     [TestClass]
     public class JAVHDPornClientTest
