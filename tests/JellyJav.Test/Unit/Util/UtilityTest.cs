@@ -1,12 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FluentAssertions;
 using JellyJav.Plugin.Util;
-using MediaBrowser.Controller.Library;
-using MediaBrowser.Controller.Providers;
 
 namespace JellyJav.Test.Unit.Util
 {
@@ -98,6 +91,12 @@ namespace JellyJav.Test.Unit.Util
             string filename = "abc-1234.mp4";
             string result = Utility.ExtractCodeFromFilename(filename);
             result.Should().Be("ABC-123");
+        }
+
+        [TestMethod]
+        public void ReverseName_Test()
+        {
+            Utility.ReverseName("First Last").Should().Be("Last First");
         }
     }
 }
