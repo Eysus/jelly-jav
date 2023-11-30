@@ -23,6 +23,10 @@ namespace JellyJav.Plugin.Entity
             ReleaseDate = releaseDate;
         }
 
+        public Video(string id) : base(id)
+        {
+        }
+
         public override bool Equals(object? obj)
         {
             return obj is Video video &&

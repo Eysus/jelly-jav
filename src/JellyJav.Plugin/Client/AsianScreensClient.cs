@@ -13,7 +13,7 @@ namespace JellyJav.Plugin.Client
         private const string BASE_URL = "https://www.asianscreens.com";
         private const string NO_PICTURE = "/products/400000/portraits/no_picture_available.gif";
 
-        private static readonly Regex IdFromUrl = new Regex(@".*\/(.*)\.asp", RegexOptions.Compiled);
+        private static readonly Regex ID_FROM_URL = new Regex(@".*\/(.*)\.asp", RegexOptions.Compiled);
 
         public static bool Ping()
         {
@@ -116,7 +116,7 @@ namespace JellyJav.Plugin.Client
 
         private static string? ExtractId(Uri url)
         {
-            Match match = IdFromUrl.Match(url.ToString());
+            Match match = ID_FROM_URL.Match(url.ToString());
             return match.Success ? match.Groups[1].Value : null;
         }
 

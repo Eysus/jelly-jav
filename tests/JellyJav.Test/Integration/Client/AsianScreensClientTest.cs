@@ -3,12 +3,12 @@ using JellyJav.Plugin.Client;
 using JellyJav.Plugin.Entity;
 using JellyJav.Plugin.SearchResult;
 
-namespace JellyJav.Test.Client
+namespace JellyJav.Test.Integration.Client
 {
     [TestClass]
     public class AsianScreensClientTest
     {
-        private AsianScreensClient client;
+        private readonly AsianScreensClient client;
 
         public AsianScreensClientTest()
         {
@@ -84,7 +84,7 @@ namespace JellyJav.Test.Client
         [TestMethod]
         public async Task LoadActress_Ok()
         {
-            Actress? result = await this.client.LoadActress("koharu_suzuki2").ConfigureAwait(false);
+            Actress? result = await client.LoadActress("koharu_suzuki2").ConfigureAwait(false);
 
             Actress expected = new Actress(
                 id: "koharu_suzuki2",
@@ -99,7 +99,7 @@ namespace JellyJav.Test.Client
         [TestMethod]
         public async Task LoadActress_MinimalMetadata()
         {
-            Actress? result = await this.client.LoadActress("amika_tsuboi2").ConfigureAwait(false);
+            Actress? result = await client.LoadActress("amika_tsuboi2").ConfigureAwait(false);
 
             Actress expected = new Actress(
                 id: "amika_tsuboi2",
