@@ -1,11 +1,35 @@
 using AngleSharp.Dom;
+using JellyJav.Plugin.SearchResult;
 using JellyJav.Plugin.Util;
+using System;
 using System.Globalization;
+using System.Web;
 
 namespace JellyJav.Plugin
 {
     public class JavLibraryParser
     {
+        public IEnumerable<VideoResult> ParseSearchResult(IDocument page)
+        {
+            // When there is only one result, the search redirect to the result page.
+            if (page.QuerySelector("#video_id") != null)
+            {
+                string resultCode = page.QuerySelector("#video_id .text").TextContent;
+                string id = page.QuerySelector("#video_title a")?.GetAttribute("href").Split("v=").Last();
+                return new[] { new VideoResult(resultCode, id) };
+            }
+
+            List<VideoResult> result = new List<VideoResult>();
+            foreach (IElement video in page.QuerySelectorAll(".video"))
+            {
+                string code = video.QuerySelector(".id").TextContent;
+                string id = video.QuerySelector("a")?.GetAttribute("href").Split("v=").Last();
+                result.Add(new VideoResult(code, id));
+            }
+
+            return result;
+        }
+
         public Entity.Video? ParseVideoPage(IDocument page)
         {
             string id = page.QuerySelector("#video_title a").GetAttribute("href").Split("v=").Last();

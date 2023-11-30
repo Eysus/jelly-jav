@@ -3,14 +3,13 @@ using AngleSharp;
 using AngleSharp.Dom;
 using JellyJav.Plugin.Entity;
 using JellyJav.Plugin.SearchResult;
-using JellyJav.Plugin.Util;
 
 namespace JellyJav.Plugin.Client
 {
     /// <summary>A web scraping client for javlibrary.com.</summary>
     public class JavLibraryClient : ClientBase
     {
-        private const string BASE_URL = "https://www.javlibrary.com";
+        public const string BASE_URL = "https://www.javlibrary.com";
 
         private readonly JavLibraryParser parser;
 
@@ -27,34 +26,7 @@ namespace JellyJav.Plugin.Client
         public async Task<IEnumerable<VideoResult>> SearchVideos(string identifier)
         {
             IDocument doc = await LoadPage($"{BASE_URL}/en/vl_searchbyid.php?keyword={identifier}").ConfigureAwait(false);
-
-            // When there is only one result, the search redirect to the result page.
-            if (doc.QuerySelector("#video_id") != null)
-            {
-                string? resultCode = doc.QuerySelector("#video_id .text")?.TextContent;
-                if (resultCode is null) return Array.Empty<VideoResult>();
-
-                string url = BASE_URL + doc.QuerySelector("#video_title a")?.GetAttribute("href");
-                string? id = HttpUtility.ParseQueryString(new Uri(url).Query)?.Get("v");
-                if (id is null) return Array.Empty<VideoResult>();
-
-                return new[] { new VideoResult(resultCode, id) };
-            }
-
-            List<VideoResult> videos = new List<VideoResult>();
-
-            foreach (IElement n in doc.QuerySelectorAll(".video"))
-            {
-                string? code = n.QuerySelector(".id")?.TextContent;
-                if (code is null) continue;
-
-                Uri url = new Uri($"{BASE_URL}/en/" + n.QuerySelector("a")?.GetAttribute("href"));
-                string? id = HttpUtility.ParseQueryString(url.Query)?.Get("v");
-                if (id is null) continue;
-
-                videos.Add(new VideoResult(code, id));
-            }
-
+            IEnumerable<VideoResult> videos = parser.ParseSearchResult(doc);
             return videos;
         }
 
